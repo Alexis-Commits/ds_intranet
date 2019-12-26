@@ -20,10 +20,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.jdbcAuthentication().dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery(
@@ -48,7 +46,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder(){
         PasswordEncoder encoder =  new BCryptPasswordEncoder();
-
         return encoder;
     }
 

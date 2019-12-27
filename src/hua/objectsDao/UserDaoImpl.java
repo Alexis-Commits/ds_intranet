@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -36,7 +38,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    @Transactional
     public void saveUser(Users user) {
+        PasswordEncoder encoder =  new BCryptPasswordEncoder();
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        String pass = user.getPassword();
+        pass = encoder.encode(pass);
+        user.setPassword(pass);
+        System.out.println(pass);
+        currentSession.save(user);
+        System.out.println("Save user finished !");
 
     }
 }

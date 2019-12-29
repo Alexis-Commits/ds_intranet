@@ -21,20 +21,23 @@ public class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public List<Users> getUsers() {
-        //Get the current session via hibernate
         Session currentSession = sessionFactory.getCurrentSession();
 
-        //Create the query
         Query<Users> query = currentSession.createQuery("from Users" , Users.class);
-
         List<Users> users = query.getResultList();
 
         return users;
     }
 
     @Override
-    public Users getUserByUsername(String username) {
-        return null;
+    @Transactional
+    public List<Users> getUserByUsername(String username) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<Users> query = currentSession.createQuery("from Users E WHERE E.name = :username" , Users.class);
+        query.setParameter("username" , username);
+
+        return query.getResultList();
     }
 
     @Override
@@ -46,9 +49,44 @@ public class UserDaoImpl implements UserDao {
         String pass = user.getPassword();
         pass = encoder.encode(pass);
         user.setPassword(pass);
-        System.out.println(pass);
+
         currentSession.save(user);
+
         System.out.println("Save user finished !");
 
+    }
+
+    @Override
+    @Transactional
+    public void updateUser(Users user) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        currentSession.createQuery("update Users set enabled=:enabled where name=:username").setParameter("enabled" ,user.getEnabled()).setParameter("username" , user.getName()).executeUpdate();
+
+        System.out.println("update user finished !");
+    }
+
+    @Override
+    @Transactional
+    public void updateUserPC(Users user) {
+        PasswordEncoder encoder =  new BCryptPasswordEncoder();
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        user.setPassword(encoder.encode(user.getPassword()));
+        currentSession.update(user);
+
+        System.out.println("update user finished (Password changed )!");
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(String username) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<Users> query = currentSession.createQuery("from Users E WHERE E.name = :username" , Users.class);
+        query.setParameter("username" , username);
+        currentSession.delete(query.getResultList().get(0));
+
+        System.out.println("Delete user :" +username+ "finished");
     }
 }

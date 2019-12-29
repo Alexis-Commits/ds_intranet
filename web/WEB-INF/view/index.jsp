@@ -7,7 +7,7 @@
 --%>
 
 <head>
-    <title>Logged in </title>
+    <title>MAIN MENU </title>
 </head>
 <body>
 

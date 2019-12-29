@@ -1,17 +1,24 @@
 package hua.objects;
 
-public class UserProfile {
-    static int enabled =1;
 
+public class UserProfile {
+    private int enabled ;
     private String username ;
     private String password;
     private String authority;
 
+    public UserProfile(String username, String password, int enabled , String authority) {
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+        this.enabled = enabled;
+    }
     public UserProfile(String username, String password, String authority) {
         this.username = username;
         this.password = password;
         this.authority = authority;
     }
+    public UserProfile(){}
 
     public String getUsername() {
         return username;
@@ -27,6 +34,14 @@ public class UserProfile {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
     }
 
     public String getAuthority() {

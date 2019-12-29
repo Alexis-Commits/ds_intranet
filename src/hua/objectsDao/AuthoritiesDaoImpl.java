@@ -1,7 +1,6 @@
 package hua.objectsDao;
 
 import hua.objects.Authorities;
-import hua.objects.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -39,4 +38,29 @@ public class AuthoritiesDaoImpl  implements  AuthoritiesDao{
         System.out.println("In save Authority method ");
 
     }
+
+    @Override
+    @Transactional
+    public void updateAuthorities(Authorities authorities) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.update(authorities);
+        System.out.println("In update Authority method ");
+
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserAuthority(String username) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<Authorities> query = currentSession.createQuery("from Authorities E WHERE E.username = :username" , Authorities.class);
+        query.setParameter("username" , username);
+        currentSession.delete(query.getResultList().get(0));
+
+        System.out.println("Delete user :" + username + "finished");
+
+
+    }
+
+
 }

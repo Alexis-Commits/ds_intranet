@@ -24,7 +24,7 @@
     <input type="text" name="username"/><br/>
     <label class="form-label">Password</label>
     <input type="password" name="password"/><br/>
-    <button class="btn" type="submit">Login</button>
+    <button class="btn btn-success" type="submit">Login</button>
 </div>
 </form:form>
 

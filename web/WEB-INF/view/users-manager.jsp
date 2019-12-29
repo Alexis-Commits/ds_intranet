@@ -10,12 +10,24 @@
     <title>Users Manager</title>
 </head>
 <body>
+
+<h1>
+    <a class= "mena" href="/users-manager">Users Manager</a>
+    <a class="mena" href="/create-user">Create User</a>
+    <a class="mena" href="/login">Logout</a>
+</h1>
+<br/>
+<br/>
+<br/>
+
+
 <div>
-<table class="table ">
+<table class="table table-dark">
     <thead>
     <tr>
         <th scope="col">USERNAME</th>
         <th scope="col">ENABLED</th>
+        <th scope="col">#</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +35,7 @@
         <tr>
             <td>${user.name}</td>
             <td>${user.enabled}</td>
+            <td><a href="/users-manager/${user.name}" >Edit</a> </td>
         </tr>
     </c:forEach>
     </tbody>
@@ -41,8 +54,14 @@ div{
 .table{
     width: inherit;
 }
-td{
-    text-align: center;
+
+a{
+    color:white;
 }
 
+.mena{
+    color:rebeccapurple;
+    font-size: 50px;
+    margin-left: 20px;
+}
 </style>

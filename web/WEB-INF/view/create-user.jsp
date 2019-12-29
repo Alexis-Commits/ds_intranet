@@ -10,8 +10,18 @@
     <title>Create a new user </title>
 </head>
 <body>
+<h1>
+    <a href="/users-manager">Users Manager</a>
+    <a href="/create-user">Create User</a>
+    <a href="/login">Logout</a>
+</h1>
+<br/>
+<br/>
+<h1>Create a new user </h1><br/>
+<h2>Fill the form </h2><br/>
+
 <form:form action="#" form:action="/create-user/create" method="post" >
-    <modelAttribute>userProfile</modelAttribute>
+    <modelAttribute hidden>userProfile</modelAttribute>
     <label class="form-label">Username</label>
     <input type="text" name="username"/><br/>
 
@@ -22,8 +32,15 @@
     <input type="text" name="authority"/><br/>
 
 
-    <button class="btn" type="submit">Create user</button>
+    <button class="btn btn-success" type="submit">Create user</button>
 </form:form>
 
 </body>
+<style>
+    a{
+        color:rebeccapurple;
+        font-size: 50px;
+        margin-left: 20px;
+    }
+</style>
 

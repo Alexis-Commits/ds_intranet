@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<head>
     <title>Users Manager</title>
 </head>
 <body>

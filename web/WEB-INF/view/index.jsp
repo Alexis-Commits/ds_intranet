@@ -6,14 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<head>
     <title>MAIN MENU </title>
 </head>
 <body>
 
 <a href="/users-manager">Users Manager</a>
 <a href="/create-user">Create User</a>
-<a href="/login">Logout</a>
+<a href="/login">Logout</a><br/>
+<a href="/students">Students</a>
 
 </body>
 

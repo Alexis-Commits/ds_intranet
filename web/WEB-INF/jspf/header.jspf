@@ -3,4 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
-<link href="../resources/bootstrap.min.css" rel="stylesheet">
+<div class="wrapper">
+<link href="${pageContext.request.contextPath}/resources/bootstrap.min.css" rel="stylesheet">
+<head>
+<link rel="icon"
+      type="image/x-icon"
+      href="${pageContext.request.contextPath}/resources/favicon.ico">

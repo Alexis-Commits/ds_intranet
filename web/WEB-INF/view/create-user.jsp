@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<head>
     <title>Create a new user </title>
 </head>
 <body>

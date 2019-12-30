@@ -1,2 +1,17 @@
-<footer>hua ds project</footer>
+</div>
+<footer> - HUA DISTRIBUTED SYSTEMS PROJECT 2019-2020 - </footer>
+<style>
+    html, body {
+        height: 100%;
+    }
+    .wrapper {
+        min-height: 100%;
+        margin-bottom: -100px;
+        padding-bottom: 200px;
+    }
+    footer {
+        height: 200px;
+        width: 200px;
+    }
+</style>
 </html>

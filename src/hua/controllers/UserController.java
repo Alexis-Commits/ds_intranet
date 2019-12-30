@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -70,10 +71,10 @@ public class UserController {
     }
 
     @GetMapping("/students/students-manager/enable/{id}")
-    public String enableStudent(@PathVariable int id ){
+    public String enableStudent(@PathVariable int id , HttpServletRequest request){
         studentsHousingDao.enableStudent(new StudentHousing(id , 1 ));
-
-        return "redirect:/students/students-manager";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
     }
 
 

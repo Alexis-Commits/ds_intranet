@@ -53,5 +53,9 @@
         color : coral;
 
     }
+    body{
+        background: gray;
+        opacity: 0.5;
+    }
 
 </style>

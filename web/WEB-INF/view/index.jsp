@@ -10,10 +10,10 @@
 </head>
 <body>
 
-<a href="/users-manager">Users Manager</a>
-<a href="/create-user">Create User</a>
-<a href="/login">Logout</a><br/>
-<a href="/students">Students</a>
+<a  class ="btn-outline-light" href="/users-manager">Users Manager</a><br/>
+<a  class ="btn-outline-light" href="/create-user">Create User</a><br/>
+<a class ="btn-outline-light" href="/login">Logout</a><br/><br/><br/>
+<a  class ="btn-outline-dark" href="/students">Students</a>
 
 </body>
 
@@ -24,5 +24,9 @@
         color:rebeccapurple;
         font-size: 50px;
         margin-left: 20px;
+    }
+    body{
+        background: #6f42c1;
+        opacity: 0.5;
     }
 </style>

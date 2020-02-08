@@ -2,8 +2,6 @@ package hua.helper;
 
 import hua.objects.HousingScore;
 import hua.objects.StudentHousing;
-import hua.objects.StudentsRequests;
-
 import java.util.List;
 
 public class StudentsHelperMethods {

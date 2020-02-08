@@ -63,4 +63,13 @@ public class StudentsRequestsDaoImpl implements StudentsRequestsDao {
 
     }
 
+    @Override
+    @Transactional
+    public void addRequest(StudentsRequests studentsRequest) {
+        Session currentSession =  sessionFactory.getCurrentSession();
+
+        currentSession.save(studentsRequest);
+        System.out.println("A student request has been added");
+    }
+
 }

@@ -38,4 +38,27 @@ public class StudentsDaoImpl implements StudentsDao {
 
         return students;
     }
+
+    @Override
+    @Transactional
+    public void updateStudent(Student student) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.update(student);
+
+    }
+
+    @Override
+    @Transactional
+    public Student getStudentIdByMail(String mail) {
+        Session currentSession= sessionFactory.getCurrentSession();
+
+        Query<Student> query = currentSession.createQuery("from Student E where E.email=:mail" , Student.class);
+        query.setParameter("mail" , mail);
+        List<Student> student = query.getResultList();
+        if(student.isEmpty()){
+            System.out.println("empty....");
+
+        }
+        return student.get(0);
+    }
 }

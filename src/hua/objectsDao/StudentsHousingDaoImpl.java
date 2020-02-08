@@ -33,8 +33,18 @@ public class StudentsHousingDaoImpl implements StudentsHousingDao {
         Query<StudentHousing> query = currentSession.createQuery("from StudentHousing " , StudentHousing.class);
         List<StudentHousing> enabledStudents =  query.getResultList();
 
-        System.out.println("Get enabled students done ! ");
-
         return enabledStudents;
+    }
+
+    @Override
+    @Transactional
+    public boolean isEnabled(int id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<StudentHousing> query = currentSession.createQuery("from StudentHousing  E  WHERE E.id=:id" , StudentHousing.class);
+        query.setParameter("id" , id);
+        List<StudentHousing> s = query.getResultList();
+
+        return !s.isEmpty();
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -26,4 +27,27 @@ public class HousingScoreDaoImpl implements HousingScoreDao{
 
         return scores;
     }
+
+    @Override
+    @Transactional
+    public int getStudentPosById(int id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<HousingScore> query = currentSession.createQuery("from HousingScore order by score DESC" ,HousingScore.class);
+        List<HousingScore> scores = query.getResultList();
+
+        int i=0;
+        for(HousingScore s : scores){
+            System.out.println(s.getId());
+            i++;
+            if(s.getId() == id ){
+
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+
 }

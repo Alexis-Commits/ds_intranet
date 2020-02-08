@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface HousingScoreDao {
     public List<HousingScore> getStudentsScore();
+    public int  getStudentPosById(int id);
 }

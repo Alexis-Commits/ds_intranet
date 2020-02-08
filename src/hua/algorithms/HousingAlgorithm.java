@@ -13,7 +13,6 @@ public class HousingAlgorithm {
         int semester = request.getSemester();
         int alreadyHousingYears = request.getHousingYears();
 
-        //TODO: Create algorithm
         if(fromAnotherCity == 0 || semester > 8) {
             return score;
         }

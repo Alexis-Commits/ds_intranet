@@ -11,8 +11,8 @@
 <body>
 
 <h1>
-    <a class= "mena" href="/users-manager">Users Manager</a>
-    <a class="mena" href="/create-user">Create User</a>
+    <a class= "mena" href="/admin/users-manager">Users Manager</a>
+    <a class="mena" href="/admin/create-user">Create User</a>
     <a class="mena" href="/login">Logout</a>
 </h1>
 <br/>
@@ -34,7 +34,7 @@
         <tr>
             <td>${user.name}</td>
             <td>${user.enabled}</td>
-            <td><a href="/users-manager/${user.name}" >Edit</a> </td>
+            <td><a href="/admin/users-manager/${user.name}" >Edit</a> </td>
         </tr>
     </c:forEach>
     </tbody>

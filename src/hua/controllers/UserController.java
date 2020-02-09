@@ -8,6 +8,7 @@ import hua.objectsDao.StudentsDao;
 import hua.objectsDao.StudentsHousingDao;
 import hua.objectsDao.StudentsRequestsDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/students/students-manager")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public String studentsManager(Model model){
         List<Student> studentList = studentsDao.getStudents();
         List<StudentHousing> studentsEnabledList = studentsHousingDao.getEnabledStudents();
@@ -48,6 +50,7 @@ public class UserController {
 
         return "students-manager";
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DIT')")
     @GetMapping("/students/students-manager/dit")
     public String studentsManagerdit(Model model){
         List<Student> studentList = studentsDao.getStudentsByDepartment("dit");
@@ -59,6 +62,7 @@ public class UserController {
 
         return "students-manager";
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DHEE')")
     @GetMapping("/students/students-manager/dhee")
     public String studentsManagerdhee(Model model){
         List<Student> studentList = studentsDao.getStudentsByDepartment("dhee");
@@ -70,6 +74,7 @@ public class UserController {
 
         return "students-manager";
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DDNS')")
     @GetMapping("/students/students-manager/ddns")
     public String studentsManagerddns(Model model){
         List<Student> studentList = studentsDao.getStudentsByDepartment("ddns");
@@ -82,6 +87,7 @@ public class UserController {
         return "students-manager";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DIT') or hasAuthority('ROLE_DDNS') or hasAuthority('ROLE_DDHE')")
     @GetMapping("/students/students-manager/enable/{id}")
     public String enableStudent(@PathVariable int id , HttpServletRequest request){
         studentsHousingDao.enableStudent(new StudentHousing(id , 1 ));
@@ -89,7 +95,7 @@ public class UserController {
 
         return "redirect:"+ referer;
     }
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     @GetMapping("/students/students-requests")
     public String studentsRequests(Model model){
         List<StudentsRequests> requests = studentsRequestsDao.getRequests();
@@ -101,6 +107,7 @@ public class UserController {
 
         return "students-requests";
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DIT')")
     @GetMapping("/students/students-requests/dit")
     public String studentsRequestsDit(Model model){
         List<StudentsRequests> requests = studentsRequestsDao.getRequestsByDepartment("dit");
@@ -112,6 +119,7 @@ public class UserController {
 
         return "students-requests";
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DDNS')")
     @GetMapping("/students/students-requests/ddns")
     public String studentsRequestsDdns(Model model){
         List<StudentsRequests> requests = studentsRequestsDao.getRequestsByDepartment("ddns");
@@ -123,6 +131,7 @@ public class UserController {
 
         return "students-requests";
     }
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DHEE')")
     @GetMapping("/students/students-requests/dhee")
     public String studentsRequestsDhee(Model model){
         List<StudentsRequests> requests = studentsRequestsDao.getRequestsByDepartment("dhee");
@@ -134,7 +143,7 @@ public class UserController {
 
         return "students-requests";
     }
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER') or hasAuthority('ROLE_DIT') or hasAuthority('ROLE_DDNS') or hasAuthority('ROLE_DDHE')")
     @GetMapping("/students/students-requests/accept/{id}")
     public String AcceptRequest(@PathVariable String id , HttpServletRequest request){
         studentsRequestsDao.acceptRequest(id);

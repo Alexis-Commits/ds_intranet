@@ -10,10 +10,10 @@
 </head>
 <body>
 
-<a  class ="btn-outline-light" href="/users-manager">Users Manager</a><br/>
-<a  class ="btn-outline-light" href="/create-user">Create User</a><br/>
-<a class ="btn-outline-light" href="/login">Logout</a><br/><br/><br/>
-<a  class ="btn-outline-dark" href="/students">Students</a>
+<a  class ="btn-outline-light" href="/admin/users-manager">Users Manager</a><br/>
+<a  class ="btn-outline-light" href="/admin/create-user">Create User</a><br/>
+<a class ="btn-outline-light" href="/logout">Logout</a><br/><br/><br/>
+<a  class ="btn-outline-dark" href="/admin/students">Students</a>
 
 </body>
 

@@ -7,6 +7,7 @@ import hua.objects.Users;
 import hua.objectsDao.AuthoritiesDao;
 import hua.objectsDao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequestMapping("/admin")
 public class IndexController {
 
     @Autowired
@@ -21,7 +24,7 @@ public class IndexController {
     @Autowired
     private AuthoritiesDao authoritiesDao;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String index(){
 
         return "index";

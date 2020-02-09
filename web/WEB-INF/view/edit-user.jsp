@@ -12,8 +12,8 @@
 <modelAttribute hidden>userProfile</modelAttribute>
 
 <h1>
-    <a href="/users-manager">Users Manager</a>
-    <a href="/create-user">Create User</a>
+    <a href="/admin/users-manager">Users Manager</a>
+    <a href="/admin/create-user">Create User</a>
     <a href="/login">Logout</a>
 </h1>
 

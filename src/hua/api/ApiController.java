@@ -4,6 +4,7 @@ import hua.objects.Student;
 import hua.objects.StudentLogin;
 import hua.objects.StudentsRequests;
 import hua.objectsDao.*;
+import hua.security.AESCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,18 +36,20 @@ public class ApiController {
     @PostMapping("/score")
     public ResponseEntity<String> getScore(@RequestBody String id ){
         System.out.println(id);
-
+        id = AESCrypt.decrypt(id);
         if(housingScoreDao.getStudentPosById(Integer.valueOf(id)) >0) {
-            System.out.println(housingScoreDao.getStudentPosById(Integer.valueOf(id)));
-            return new ResponseEntity<>(String.valueOf(housingScoreDao.getStudentPosById(Integer.valueOf(id))), HttpStatus.OK);
-
+            return new ResponseEntity<>(AESCrypt.encrypt(String.valueOf(housingScoreDao.getStudentPosById(Integer.valueOf(id)))).toString(), HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("-1" , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(AESCrypt.encrypt("-1") , HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> login(@RequestBody StudentLogin studentLogin ){
+        //Decrypt
+        studentLogin.setMail(AESCrypt.decrypt(studentLogin.getMail()));
+        studentLogin.setPassword(AESCrypt.decrypt(studentLogin.getPassword()));
+        //End Decryption
 
         if(studentLoginDao.login(studentLogin)){
             Student student = studentsDao.getStudentIdByMail(studentLogin.getMail());
@@ -58,31 +61,52 @@ public class ApiController {
 
     @PostMapping("/request/housing")
     public void requestHousing(@RequestBody StudentsRequests studentsRequest){
+        //Decrypt
+        studentsRequest.setId(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getId()))));
+        studentsRequest.setBrothers(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getBrothers()))));
+        studentsRequest.setDepartment(AESCrypt.decrypt(studentsRequest.getDepartment()));
+        studentsRequest.setSemester(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getSemester()))));
+        studentsRequest.setIncome(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getIncome()))));
+        studentsRequest.setFromAnotherCity(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getFromAnotherCity()))));
+        studentsRequest.setHousingYears(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getHousingYears()))));
+        //End Decryption
+
         studentsRequestsDao.addRequest(studentsRequest);
         System.out.println("A housing request had been added");
     }
 
     @PostMapping("/info/change")
     public ResponseEntity<Boolean> infoChange(@RequestBody Student student){
+        //Decrypt
+        student.setAddress(AESCrypt.decrypt(student.getAddress()));
+        student.setPhoneNumber(AESCrypt.decrypt(student.getPhoneNumber()));
+        //End Decryption
+
         studentsDao.updateStudent(student);
         System.out.println("A student's info has been updated");
 
         return new ResponseEntity<>(true,HttpStatus.OK);
     }
 
-    //dump , Call it to add new student to login table
-    @GetMapping(value = "/insert" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public AtomicBoolean dumpData(){
-        studentLoginDao.insertSomeUsers();
+    //dump for tests
+    @GetMapping(value = "/dump" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> dumpData(@RequestBody String encryptedString){
 
-        return new AtomicBoolean(true);
+        String decrypted = AESCrypt.decrypt(encryptedString);
+        System.out.println(decrypted);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @GetMapping(value ="/can-request")
-    public ResponseEntity<Boolean> isStudentEnabled(@RequestBody String id){
+    public ResponseEntity<String> isStudentEnabled(@RequestBody String student_id){
+        String encrypted_id = AESCrypt.decrypt(student_id);
+        Boolean isEnabled = studentsHousingDao.isEnabled(Integer.valueOf(encrypted_id));
+        String encryptedMessage = AESCrypt.encrypt(String.valueOf(isEnabled));
 
-        return new ResponseEntity<>(studentsHousingDao.isEnabled(Integer.valueOf(id)), HttpStatus.OK);
+        return new ResponseEntity<>(encryptedMessage, HttpStatus.OK);
     }
+
+
 
 
 

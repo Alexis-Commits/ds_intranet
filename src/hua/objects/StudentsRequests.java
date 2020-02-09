@@ -11,85 +11,82 @@ public class StudentsRequests {
 
     @Column(name="student_id")
     @Id
-    int id;
+    String id;
 
     @Column(name="income")
-    int income;
+    String income;
 
     @Column(name="studying_brothers")
-    int brothers;
+    String brothers;
 
     @Column(name="from_another_city")
-    int fromAnotherCity;
+    String fromAnotherCity;
 
     @Column(name="semester")
-    int semester ;
+    String semester ;
 
     @Column(name="already_housing_years")
-    int housingYears;
+    String housingYears;
 
     @Column(name="department")
     String department;
 
-
-
-    public StudentsRequests() {
-    }
-    public StudentsRequests(int id ,int income , int brothers , int fromAnotherCity , int semester , int housingYears , String department) {
-        this.id = id ;
+    public StudentsRequests(String id , String income , String brothers , String fromAnotherCity , String semester , String housingYears , String department){
+        this.id = id;
         this.income = income;
-        this.brothers = brothers ;
+        this.brothers = brothers;
         this.fromAnotherCity = fromAnotherCity;
-        this.semester = semester ;
+        this.semester = semester;
         this.housingYears = housingYears;
         this.department = department;
+
     }
 
-    public int getId() {
+    public String  getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getIncome() {
+    public String getIncome() {
         return income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(String income) {
         this.income = income;
     }
 
-    public int getBrothers() {
+    public String getBrothers() {
         return brothers;
     }
 
-    public void setBrothers(int brothers) {
+    public void setBrothers(String brothers) {
         this.brothers = brothers;
     }
 
-    public int getFromAnotherCity() {
+    public String getFromAnotherCity() {
         return fromAnotherCity;
     }
 
-    public void setFromAnotherCity(int fromAnotherCity) {
+    public void setFromAnotherCity(String fromAnotherCity) {
         this.fromAnotherCity = fromAnotherCity;
     }
 
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
 
-    public int getHousingYears() {
+    public String getHousingYears() {
         return housingYears;
     }
 
-    public void setHousingYears(int housingYears) {
+    public void setHousingYears(String housingYears) {
         this.housingYears = housingYears;
     }
 
@@ -100,4 +97,8 @@ public class StudentsRequests {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    public StudentsRequests() {
+    }
+
 }

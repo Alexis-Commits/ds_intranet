@@ -62,13 +62,13 @@ public class ApiController {
     @PostMapping("/request/housing")
     public void requestHousing(@RequestBody StudentsRequests studentsRequest){
         //Decrypt
-        studentsRequest.setId(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getId()))));
-        studentsRequest.setBrothers(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getBrothers()))));
+        studentsRequest.setId(AESCrypt.decrypt(String.valueOf(studentsRequest.getId())));
+        studentsRequest.setBrothers(AESCrypt.decrypt(String.valueOf(studentsRequest.getBrothers())));
         studentsRequest.setDepartment(AESCrypt.decrypt(studentsRequest.getDepartment()));
-        studentsRequest.setSemester(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getSemester()))));
-        studentsRequest.setIncome(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getIncome()))));
-        studentsRequest.setFromAnotherCity(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getFromAnotherCity()))));
-        studentsRequest.setHousingYears(Integer.valueOf(AESCrypt.decrypt(String.valueOf(studentsRequest.getHousingYears()))));
+        studentsRequest.setSemester(AESCrypt.decrypt(String.valueOf(studentsRequest.getSemester())));
+        studentsRequest.setIncome(AESCrypt.decrypt(String.valueOf(studentsRequest.getIncome())));
+        studentsRequest.setFromAnotherCity(AESCrypt.decrypt(String.valueOf(studentsRequest.getFromAnotherCity())));
+        studentsRequest.setHousingYears(AESCrypt.decrypt(String.valueOf(studentsRequest.getHousingYears())));
         //End Decryption
 
         studentsRequestsDao.addRequest(studentsRequest);
@@ -90,10 +90,8 @@ public class ApiController {
 
     //dump for tests
     @GetMapping(value = "/dump" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> dumpData(@RequestBody String encryptedString){
-
-        String decrypted = AESCrypt.decrypt(encryptedString);
-        System.out.println(decrypted);
+    public ResponseEntity<Boolean> dumpData(){
+        studentLoginDao.insertSomeUsers();
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 

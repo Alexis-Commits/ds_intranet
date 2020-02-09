@@ -136,7 +136,7 @@ public class UserController {
     }
 
     @GetMapping("/students/students-requests/accept/{id}")
-    public String AcceptRequest(@PathVariable int id , HttpServletRequest request){
+    public String AcceptRequest(@PathVariable String id , HttpServletRequest request){
         studentsRequestsDao.acceptRequest(id);
         String referer = request.getHeader("Referer");
 

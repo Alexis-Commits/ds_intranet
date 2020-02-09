@@ -2,7 +2,6 @@ package hua.objectsDao;
 
 import hua.algorithms.HousingAlgorithm;
 import hua.objects.HousingScore;
-import hua.objects.Student;
 import hua.objects.StudentsRequests;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,7 +47,7 @@ public class StudentsRequestsDaoImpl implements StudentsRequestsDao {
 
     @Override
     @Transactional
-    public void acceptRequest(int id) {
+    public void acceptRequest(String id) {
         Session currentSession = sessionFactory.getCurrentSession();
 
         Query<StudentsRequests> query = currentSession.createQuery("from StudentsRequests E where E.id=:id" , StudentsRequests.class);
@@ -57,7 +56,7 @@ public class StudentsRequestsDaoImpl implements StudentsRequestsDao {
         StudentsRequests request = studentsRequest.get(0);
 
         int score = HousingAlgorithm.calcScore(request);
-        HousingScore housingScore =  new HousingScore(request.getId() , score , request.getDepartment()) ;
+        HousingScore housingScore =  new HousingScore(Integer.valueOf(request.getId()) , score , request.getDepartment()) ;
 
         currentSession.save(housingScore);
 

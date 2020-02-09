@@ -45,8 +45,8 @@ public class StudentLoginDaoImpl implements StudentLoginDao {
         PasswordEncoder encoder =  new BCryptPasswordEncoder();
 
         //A mail from students table
-        StudentLogin studentLogin =  new StudentLogin("middon7f@histats.com" , encoder.encode("1234"));
-        session.update(studentLogin);
+        StudentLogin studentLogin =  new StudentLogin("sharlowd9@macromedia.com" , encoder.encode("1234"));
+        session.save(studentLogin);
 
     }
 }

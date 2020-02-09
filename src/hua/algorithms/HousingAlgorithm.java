@@ -7,11 +7,11 @@ public class HousingAlgorithm {
         int score= 0 ;
         int maxScore = 1000;
 
-        int income = request.getIncome();
-        int studyingBrothers = request.getBrothers();
-        int fromAnotherCity=request.getFromAnotherCity(); // 0 false  or 1 true
-        int semester = request.getSemester();
-        int alreadyHousingYears = request.getHousingYears();
+        int income = Integer.valueOf(request.getIncome());
+        int studyingBrothers = Integer.valueOf(request.getBrothers());
+        int fromAnotherCity=Integer.valueOf(request.getFromAnotherCity()); // 0 false  or 1 true
+        int semester = Integer.valueOf(request.getSemester());
+        int alreadyHousingYears = Integer.valueOf(request.getHousingYears());
 
         if(fromAnotherCity == 0 || semester > 8) {
             return score;

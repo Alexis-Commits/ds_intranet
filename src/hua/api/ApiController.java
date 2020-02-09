@@ -32,10 +32,17 @@ public class ApiController {
     @Autowired
     StudentsHousingDao studentsHousingDao;
 
-    @GetMapping("/score/{id}")
-    public String getScore(@PathVariable int id , HttpServletRequest request){ //Done
+    @PostMapping("/score")
+    public ResponseEntity<String> getScore(@RequestBody String id ){
+        System.out.println(id);
 
-        return String.valueOf(housingScoreDao.getStudentPosById(id));
+        if(housingScoreDao.getStudentPosById(Integer.valueOf(id)) >0) {
+            System.out.println(housingScoreDao.getStudentPosById(Integer.valueOf(id)));
+            return new ResponseEntity<>(String.valueOf(housingScoreDao.getStudentPosById(Integer.valueOf(id))), HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity<>("-1" , HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -76,5 +83,7 @@ public class ApiController {
 
         return new ResponseEntity<>(studentsHousingDao.isEnabled(Integer.valueOf(id)), HttpStatus.OK);
     }
+
+
 
 }

@@ -8,9 +8,9 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://remotemysql.com/p0Z0EpqtfN?useSSL=false</property>
-        <property name="connection.username">p0Z0EpqtfN</property>
-        <property name="connection.password">TTuhAKHhXL</property>
+        <property name="connection.url">jdbc:mysql://83.212.105.20:3306/ds_team_45?useSSL=false</property>
+        <property name="connection.username">ds_team_45</property>
+        <property name="connection.password">changeit</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>

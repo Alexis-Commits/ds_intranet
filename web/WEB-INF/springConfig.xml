@@ -34,9 +34,9 @@
     <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://remotemysql.com/p0Z0EpqtfN?useSSL=false" />
-        <property name="user" value="p0Z0EpqtfN" />
-        <property name="password" value="TTuhAKHhXL" />
+        <property name="jdbcUrl" value="jdbc:mysql://83.212.105.20:3306/ds_team_45?useSSL=false" />
+        <property name="user" value="ds_team_45" />
+        <property name="password" value="changeit" />
 
         <!-- these are connection pool properties for C3P0 -->
         <property name="initialPoolSize" value="5"/>
@@ -69,6 +69,7 @@
 
     <!-- Add support for reading web resources: css, images, js, etc ... -->
     <mvc:resources location="WEB-INF/resources/" mapping="/resources/**"></mvc:resources>
+
 
 
 
